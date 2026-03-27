@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
- class RoomInventory {
+class RoomInventory {
 
     // Map to store room type (Key) and available count (Value)
     private Map<String, Integer> roomAvailability;
