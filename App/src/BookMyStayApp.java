@@ -1,8 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class RoomInventory {
+ class RoomInventory {
 
     // Map to store room type (Key) and available count (Value)
     private Map<String, Integer> roomAvailability;
@@ -37,7 +36,7 @@ public class RoomInventory {
     }
 }
 
-public class BookMyStay {
+public class BookMyStayApp {
 
     public static void main(String[] args) {
         // 1. Initialize the inventory component
