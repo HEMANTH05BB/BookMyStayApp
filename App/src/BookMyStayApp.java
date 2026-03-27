@@ -1,31 +1,66 @@
-/**
- * ===============================================================
- * MAIN CLASS - UseCase1HotelBookingApp
- * ===============================================================
- * * Use Case 1: Application Entry & Welcome Message
- * * Description:
- * This class represents the entry point of the
- * Hotel Booking Management System.
- * * @author Developer
- * @version 1.0
- */
+import java.util.HashMap;
+import java.util.Map;
+
+
+ class RoomInventory {
+
+    // Map to store room type (Key) and available count (Value)
+    private Map<String, Integer> roomAvailability;
+
+
+    public RoomInventory() {
+        this.roomAvailability = new HashMap<>();
+        initializeInventory();
+    }
+
+
+    private void initializeInventory() {
+        // Registering room types with initial counts
+        roomAvailability.put("Single", 10);
+        roomAvailability.put("Double", 7);
+        roomAvailability.put("Suite", 3);
+        roomAvailability.put("Penthouse", 1);
+    }
+
+
+    public Map<String, Integer> getRoomAvailability() {
+        return roomAvailability;
+    }
+
+
+    public void updateAvailability(String roomType, int count) {
+        if (roomAvailability.containsKey(roomType)) {
+            roomAvailability.put(roomType, count);
+        } else {
+            System.out.println("Error: Room type '" + roomType + "' does not exist.");
+        }
+    }
+}
+
 public class BookMyStayApp {
 
-    /**
-     * Application entry point.
-     * * This method is the first method executed
-     * when the program is launched by the JVM.
-     * * @param args Command-line arguments
-     */
     public static void main(String[] args) {
-        // Step 1: Display the welcome message
-        System.out.println("Welcome to the Hotel Booking Management System!");
+        // 1. Initialize the inventory component
+        RoomInventory inventory = new RoomInventory();
 
-        // Step 2: Display Application Name and Version
-        System.out.println("Application Name: My Book App");
-        System.out.println("Version: 1.0");
+        System.out.println("--- Initial Room Inventory ---");
+        displayInventory(inventory);
 
-        // Step 3: Confirm successful startup
-        System.out.println("System started successfully.");
+        // 2. Perform a controlled update (e.g., a "Double" room was booked)
+        System.out.println("\nUpdating 'Double' room availability to 6...");
+        inventory.updateAvailability("Double", 6);
+
+        // 3. Display the updated state
+        System.out.println("--- Updated Room Inventory ---");
+        displayInventory(inventory);
+    }
+
+
+    private static void displayInventory(RoomInventory inventory) {
+        Map<String, Integer> currentStatus = inventory.getRoomAvailability();
+
+        for (Map.Entry<String, Integer> entry : currentStatus.entrySet()) {
+            System.out.println("Room Type: " + entry.getKey() + " | Available: " + entry.getValue());
+        }
     }
 }
